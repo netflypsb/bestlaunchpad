@@ -26,5 +26,6 @@ export const config = defaultWagmiConfig({
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  themeMode: 'dark'
+  themeMode: 'dark',
+  defaultChain: mainnet
 });
