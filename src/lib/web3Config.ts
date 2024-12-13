@@ -1,8 +1,8 @@
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { mainnet, bsc } from 'wagmi/chains';
+import { InjectedConnector } from 'wagmi/connectors/injected';
 
-// Updated Project ID
 const projectId = '97cc1e234357d996ee4d915aeb7b3ff2';
 
 const metadata = {
@@ -15,9 +15,15 @@ const metadata = {
 const chains = [mainnet, bsc] as const;
 
 export const config = defaultWagmiConfig({
-  chains,
+  autoConnect: true,
   projectId,
+  chains,
   metadata,
+  connectors: [
+    new InjectedConnector({
+      chains,
+    }),
+  ],
   enableCoinbase: true,
   enableInjected: true,
   enableEIP6963: true,
