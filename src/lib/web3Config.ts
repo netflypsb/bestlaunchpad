@@ -11,7 +11,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 };
 
-const chains = [mainnet, bsc];
+const chains = [mainnet, bsc] as const;
 
 export const config = defaultWagmiConfig({
   chains,
@@ -31,6 +31,5 @@ export const config = defaultWagmiConfig({
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  chains,
   themeMode: 'dark'
 });
