@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,6 +40,7 @@ const presaleData: Presale[] = [
 ];
 
 const Presales = () => {
+  const navigate = useNavigate();
   const [selectedPresales, setSelectedPresales] = useState<SelectedPresale[]>(
     presaleData.map(presale => ({ ...presale, selected: false }))
   );
@@ -56,7 +58,7 @@ const Presales = () => {
   const handlePurchase = () => {
     const selected = selectedPresales.filter(p => p.selected);
     toast.success(`Proceeding to purchase ${selected.length} presales`);
-    console.log("Selected presales:", selected);
+    navigate("/purchase", { state: { selectedPresales: selected } });
   };
 
   const selectedCount = selectedPresales.filter(p => p.selected).length;

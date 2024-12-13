@@ -7,6 +7,7 @@ import { WagmiConfig } from 'wagmi';
 import { config } from './lib/web3Config';
 import Index from "./pages/Index";
 import Presales from "./pages/Presales";
+import Purchase from "./pages/Purchase";
 import { Navbar } from "./components/Navbar";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/presales" element={<Presales />} />
+            <Route path="/purchase" element={<Purchase />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
