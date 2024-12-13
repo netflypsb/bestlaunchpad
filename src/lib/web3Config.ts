@@ -21,11 +21,6 @@ export const config = defaultWagmiConfig({
   enableInjected: true,
   enableEIP6963: true,
   enableEmail: true,
-  tokens: {
-    [mainnet.id]: {
-      address: '0x0000000000000000000000000000000000000000'
-    }
-  }
 });
 
 createWeb3Modal({
