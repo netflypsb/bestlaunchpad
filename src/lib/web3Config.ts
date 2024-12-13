@@ -11,21 +11,26 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 };
 
+const chains = [mainnet, bsc];
+
 export const config = defaultWagmiConfig({
+  chains,
   projectId,
   metadata,
   enableCoinbase: true,
   enableInjected: true,
   enableEIP6963: true,
   enableEmail: true,
-  defaultChain: mainnet,
-  tokens: undefined
+  tokens: {
+    [mainnet.id]: {
+      address: '0x0000000000000000000000000000000000000000'
+    }
+  }
 });
 
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  defaultChain: mainnet,
-  enableAnalytics: true,
+  chains,
   themeMode: 'dark'
 });
