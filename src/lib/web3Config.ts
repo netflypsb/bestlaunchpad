@@ -1,7 +1,7 @@
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { mainnet, bsc } from 'wagmi/chains';
-import { InjectedConnector } from '@wagmi/core/connectors/injected';
+import { InjectedConnector } from 'wagmi/connectors/injected'; // Corrected Path
 
 const projectId = '97cc1e234357d996ee4d915aeb7b3ff2';
 
