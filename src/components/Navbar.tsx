@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom";
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { InjectedConnector } from 'wagmi/connectors/injected';
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 
 export const Navbar = () => {
   const { address, isConnected } = useAccount();
-  const { connectAsync, connectors } = useConnect();
+  const { connectAsync, connectors } = useConnect({
+    connector: new InjectedConnector(),
+  });
   const { disconnectAsync } = useDisconnect();
   const { toast } = useToast();
 
   const handleConnect = async () => {
+    if (!connectors.length) {
+      toast({
+        title: "No Connectors",
+        description: "No wallet connectors found.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       await connectAsync({ connector: connectors[0] });
       toast({
@@ -17,6 +29,7 @@ export const Navbar = () => {
         description: "Your wallet has been successfully connected!",
       });
     } catch (error) {
+      console.error("Connection failed", error);
       toast({
         title: "Connection Failed",
         description: "Failed to connect wallet. Please try again.",
